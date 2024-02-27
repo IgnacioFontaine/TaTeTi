@@ -7,12 +7,20 @@ import { Square } from './Components/square.jsx';
 import { TURNOS } from './Constants/constants.jsx';
 import { checkWninner } from './Logic/board.jsx';
 import { Winner } from './Components/winner.jsx';
+import { Footer } from './Components/Footer/footer.jsx';
 
 
 function App() {
+  //Chequear si hay partida o es una nueva
+  const [board, setBoard] = useState(() => {
+    const boardFromStorage = window.localStorage.getItem('board');
+    return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
+  });
 
-  const [board, setBoard] = useState(Array(9).fill(null));
-  const [turn, setTurn] = useState(TURNOS.X);
+  const [turn, setTurn] = useState(() => {
+    const turnFromStorage = window.localStorage.getItem('turn');
+    return turnFromStorage ?? TURNOS.X
+  });
 
   //null = no hay ganador, false = empate
   const [winner, setWinner] = useState(null);
@@ -36,6 +44,10 @@ function App() {
     const newTurn = turn === TURNOS.X ? TURNOS.O : TURNOS.X;
     setTurn(newTurn);
 
+    //Persistencia Juego
+    window.localStorage.setItem('board', JSON.stringify(newBoard));
+    window.localStorage.setItem('turn', newTurn);
+
     //Chequeo ganador
     const newWinner = checkWninner(newBoard);
     if (newWinner) {
@@ -52,13 +64,17 @@ function App() {
     setBoard(Array(9).fill(null));
     setTurn(TURNOS.X);
     setWinner(null);
+
+    //Reset storage
+    window.localStorage.removeItem('board');
+    window.localStorage.removeItem('turn');
   }
   
 
   return (
     <>
       <div className='board'>
-        <h1>Ta Te Ti</h1>
+        <h1>Ta Te Ti Game</h1>
         <button onClick={resetGame}>Reset</button>
         <section className='game'>
           {board.map((_, index) => {
@@ -78,6 +94,7 @@ function App() {
           <Square isSelected={turn === TURNOS.O}> {TURNOS.O} </Square>
         </section>
         <Winner winner={winner} resetGame={resetGame} />
+        <Footer />
       </div>
     </>
   )

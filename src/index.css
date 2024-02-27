@@ -6,7 +6,9 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* background-color: #242424; */
+  background-color: #4f080892;
+  
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -37,6 +39,7 @@ body {
 
 .board h1 {
   color: #eee;
+  font: 3em bold italic ;
   margin-bottom: 20px;
   margin-top: 50px;
 }
