@@ -2,11 +2,12 @@ import { useState } from 'react';
 import confetti from "canvas-confetti";
 import './App.css'
 
-import { Square } from './assets/Components/square.jsx';
+import { Square } from './Components/square.jsx';
 
-import { WINNER_COMBOS, TURNOS } from './Constants/constants.jsx';
+import { TURNOS } from './Constants/constants.jsx';
+import { checkWninner } from './Logic/board.jsx';
+import { Winner } from './Components/winner.jsx';
 
-const tablero = Array(9).fill(null);
 
 function App() {
 
@@ -16,22 +17,7 @@ function App() {
   //null = no hay ganador, false = empate
   const [winner, setWinner] = useState(null);
 
-  const checkWninner = (boardToCheck) => {
-    for (const combo of WINNER_COMBOS) {
-      const [a, b, c] = combo;
-
-      if (
-        boardToCheck[a] &&
-        boardToCheck[a] == boardToCheck[b] &&
-        boardToCheck[a] == boardToCheck[c]
-      ) {
-        //Ganador
-        return boardToCheck[a]
-      }
-    }
-    //No hubo ganador
-    return null
-  }
+  
 
   //Chequear juego terminado
   const checkEndGame = (newBoard) => {
@@ -75,7 +61,7 @@ function App() {
         <h1>Ta Te Ti</h1>
         <button onClick={resetGame}>Reset</button>
         <section className='game'>
-          {tablero.map((_, index) => {
+          {board.map((_, index) => {
             return (
               <Square
                 key={index}
@@ -91,26 +77,7 @@ function App() {
           <Square isSelected={turn === TURNOS.X}> {TURNOS.X} </Square>
           <Square isSelected={turn === TURNOS.O}> {TURNOS.O} </Square>
         </section>
-        {
-          winner != null && (
-            <section className='winner'>
-              <div className='text' >
-                <h2>
-                  {winner === false
-                    ? 'Empate'
-                    : 'Ganó:'
-                }
-                </h2>
-                <header className='win'>
-                  {winner && <Square>{winner}</Square>}
-                </header>
-                <footer>
-                  <button onClick={resetGame}>Reiniciar</button>
-                </footer>
-              </div>
-            </section>
-          )
-        }
+        <Winner winner={winner} resetGame={resetGame} />
       </div>
     </>
   )
