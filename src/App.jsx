@@ -75,7 +75,6 @@ function App() {
     <>
       <div className='board'>
         <h1>Ta Te Ti Game</h1>
-        <button onClick={resetGame}>Reset</button>
         <section className='game'>
           {board.map((_, index) => {
             return (
@@ -93,6 +92,7 @@ function App() {
           <Square isSelected={turn === TURNOS.X}> {TURNOS.X} </Square>
           <Square isSelected={turn === TURNOS.O}> {TURNOS.O} </Square>
         </section>
+        <button onClick={resetGame}>Reset</button>
         <Winner winner={winner} resetGame={resetGame} />
         <Footer />
       </div>

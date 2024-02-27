@@ -1,5 +1,53 @@
-.my-footer{
+footer {
+  min-height: 450px;
+  margin-top: 100px;
+}
+
+.footer-logo {
+  height: 80px;
+  width: 80px;
+  margin: 10px;
+  border-radius: 100px;
+}
+
+
+.iconos-redes-sociales a {
+  width: 50px;
+  height: 50px;
   display: flex;
-  flex-direction: column;
-  margin-top: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  margin: 10px;
+  border: 2px solid white;
+  border-radius: 50%;
+  transition: all 0.2s ease-in;
+}
+
+.iconos-redes-sociales i {
+  color: rgb(11, 0, 0);
+  font-size: 1.5rem;
+  transition: all 0.2s ease-in;
+}
+
+.iconos-redes-sociales a:hover {
+  background-color: white;
+  border: 2px solid #7b4211;
+}
+
+.iconos-redes-sociales a:hover i {
+  color: black;
+}
+
+.derechos-de-autor {
+  font-size: 15px;
+  color: #aeaeae;
+  padding: 20px;
+}
+
+.icons-gh-lk{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:40px;
 }
