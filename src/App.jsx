@@ -62,6 +62,11 @@ function App() {
     return null
   }
 
+  //Chequear juego terminado
+  const checkEndGame = (newBoard) => {
+    return newBoard.every(square => square != null);
+  }
+
   const updateBoard = (index) => {
 
     if (board[index] || winner) return;
@@ -78,6 +83,9 @@ function App() {
     const newWinner = checkWninner(newBoard);
     if (newWinner) {
       setWinner(newWinner);
+    } else if (checkEndGame(newBoard)) {
+      //Empate
+      setWinner(false);
     }
   }
 
@@ -93,6 +101,7 @@ function App() {
     <>
       <div className='board'>
         <h1>Ta Te Ti</h1>
+        <button onClick={resetGame}>Reset</button>
         <section className='game'>
           {tablero.map((_, index) => {
             return (
@@ -121,7 +130,7 @@ function App() {
                 }
                 </h2>
                 <header className='win'>
-                  <Square>{winner}</Square>
+                  {winner && <Square>{winner}</Square>}
                 </header>
                 <footer>
                   <button onClick={resetGame}>Reiniciar</button>
