@@ -7,6 +7,14 @@ const TURNOS = {
 
 const tablero = Array(9).fill(null);
 
+const Square = ({ children, updateBoard, index, }) => {
+  return (
+    <div className='square'>
+      {children}
+    </div>
+  )
+}
+
 function App() {
 
   return (
@@ -16,11 +24,11 @@ function App() {
         <section className='game'>
           {tablero.map((_, index) => {
             return (
-              <div className='cell' key={index}>
-                <span className='cell_content'>
-                  {index}
-                </span>
-              </div>
+              <Square
+                key={index}
+                index={index}>
+                {index}
+                </Square>
             )
           })}
         </section>
