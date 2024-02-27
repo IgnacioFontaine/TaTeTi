@@ -11,7 +11,12 @@ function App() {
 
   return (
     <>
-      <h1>Ta Te Ti</h1>
+      <div className='board'>
+        <h1>Ta Te Ti</h1>
+        <section>
+          <span>Acá va el tablero</span>
+        </section>
+      </div>
     </>
   )
 }
