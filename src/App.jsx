@@ -102,6 +102,27 @@ function App() {
           <Square isSelected={turn === TURNOS.X}> {TURNOS.X} </Square>
           <Square isSelected={turn === TURNOS.O}> {TURNOS.O} </Square>
         </section>
+        {
+          winner != null && (
+            <section className='winner'>
+              <div className='text' >
+                <h2>
+                  {winner === false
+                    ? 'Empate'
+                    : 'Ganó:'
+                }
+                </h2>
+                <header className='win'>
+                  <Square>{winner}</Square>
+                </header>
+                <footer>
+                  <button>Reiniciar</button>
+                </footer>
+
+              </div>
+            </section>
+          )
+        }
       </div>
     </>
   )
