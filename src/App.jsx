@@ -8,9 +8,10 @@ const TURNOS = {
 
 const tablero = Array(9).fill(null);
 
-const Square = ({ children, updateBoard, index, }) => {
+const Square = ({ children, isSelected, updateBoard, index, }) => {
+  const className = `square ${isSelected ? 'is-selected':''} `
   return (
-    <div className='square'>
+    <div className={className}>
       {children}
     </div>
   )
