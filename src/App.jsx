@@ -13,8 +13,16 @@ function App() {
     <>
       <div className='board'>
         <h1>Ta Te Ti</h1>
-        <section>
-          <span>Acá va el tablero</span>
+        <section className='game'>
+          {tablero.map((_, index) => {
+            return (
+              <div className='cell' key={index}>
+                <span className='cell_content'>
+                  {index}
+                </span>
+              </div>
+            )
+          })}
         </section>
       </div>
     </>
