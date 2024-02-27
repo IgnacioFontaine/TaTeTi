@@ -8,10 +8,21 @@ const TURNOS = {
 
 const tablero = Array(9).fill(null);
 
+
+
+
 const Square = ({ children, isSelected, updateBoard, index, }) => {
-  const className = `square ${isSelected ? 'is-selected':''} `
+
+  const className = `square ${isSelected ? 'is-selected' : ''} `
+  const handleClick = () => {
+    updateBoard()
+  }
+
   return (
-    <div className={className}>
+    <div
+      className={className}
+      onClick={handleClick}
+    >
       {children}
     </div>
   )
@@ -19,8 +30,13 @@ const Square = ({ children, isSelected, updateBoard, index, }) => {
 
 function App() {
 
-  const [board, setBoart] = useState(Array(9).fill(null));
-  const [turns, setTurns] = useState(TURNOS.X);
+  const [board, setBoard] = useState(Array(9).fill(null));
+  const [turn, setTurn] = useState(TURNOS.X);
+
+  const updateBoard = () => { 
+    const newTurn = turn === TURNOS.X ? TURNOS.O : TURNOS.X;
+    setTurn(newTurn);
+  }
 
   return (
     <>
@@ -31,15 +47,17 @@ function App() {
             return (
               <Square
                 key={index}
-                index={index}>
+                index={index}
+                updateBoard={updateBoard}
+              >
                 {board[index]}
                 </Square>
             )
           })}
         </section>
         <section className='turns'>
-          <Square isSelected={turns === TURNOS.X}> {TURNOS.X} </Square>
-          <Square isSelected={turns === TURNOS.O}> {TURNOS.O} </Square>
+          <Square isSelected={turn === TURNOS.X}> {TURNOS.X} </Square>
+          <Square isSelected={turn === TURNOS.O}> {TURNOS.O} </Square>
         </section>
       </div>
     </>
