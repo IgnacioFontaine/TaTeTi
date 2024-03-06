@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import confetti from "canvas-confetti";
 import './App.css'
-
 import { Square } from './Components/square.jsx';
-
 import { TURNOS } from './Constants/constants.jsx';
 import { checkWninner } from './Logic/board.jsx';
 import { Winner } from './Components/winner.jsx';
 import { Footer } from './Components/Footer/footer.jsx';
+// import { Rules } from './Components/rules.jsx';
 
 
 function App() {
@@ -74,7 +73,8 @@ function App() {
   return (
     <>
       <div className='board'>
-        <h1>Ta Te Ti Game</h1>
+        <h1>Ta-Te-Ti Game</h1>
+        {/* <Rules></Rules> */}
         <section className='game'>
           {board.map((_, index) => {
             return (
